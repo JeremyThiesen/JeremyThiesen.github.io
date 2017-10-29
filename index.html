@@ -27,16 +27,13 @@
           mapTypeId: 'satellite'
         });
 
-         shotMarker = new google.maps.Marker({
-            position: {lat: 0, lng: 0},
+        google.maps.event.addListener(map, 'click', function(event) {
+          alert(event.latLng.lat() + ", " + event.latLng.lng());
+          var shotMarker = new google.maps.Marker({
+            position: {lat: event.latLng.lat(), lng: event.latLng.lng()},
             map: map,
             title: 'Shot'
           });
-
-
-        google.maps.event.addListener(map, 'click', function(event) {
-          alert(event.latLng.lat() + ", " + event.latLng.lng());
-          shotLatLng.setPosition({lat: event.latLng.lat(), lng: event.latLng.lng()});
 
         });
       }
