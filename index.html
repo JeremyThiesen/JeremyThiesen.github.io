@@ -10,12 +10,8 @@
       #map {
         height: 100%;
       }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+
+
     </style>
   </head>
   <body>
@@ -23,21 +19,25 @@
     <script>
 
       function initMap() {
-        var myLatLng = {lat: -25.363, lng: 131.044};
+        var myLatLng = {lat: 39.7854679, lng: -105.0449043};
 
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: myLatLng
+          zoom: 12,
+          center: myLatLng,
+          mapTypeId: 'satellite'
         });
 
-        var marker = new google.maps.Marker({
-          position: myLatLng,
-          map: map,
-          title: 'Hello World!'
-        });
+        var shotMarker = new google.maps.Marker({
+            map: map,
+            title: 'Shot'
+          });
 
         google.maps.event.addListener(map, 'click', function(event) {
           alert(event.latLng.lat() + ", " + event.latLng.lng());
+          var shotLatLng = {lat: event.latLng.lat(), lng: event.latLng.lng()};
+          shotMarker.setPosition(shotLatLng);
+
+
         });
       }
     </script>
